@@ -63,7 +63,7 @@ public class CanonRotation : MonoBehaviour, InputSystem_Actions.ITurretActions
         if (context.canceled)
         {
             var projectile = Instantiate(Bullet, transform.position, ShootPoint.transform.rotation);//, Quaternion.identity); //canviar la posició on s'instancia //ShootPoint
-			projectile.GetComponent<Rigidbody2D>().linearVelocity = Vector3.zero;
+			projectile.GetComponent<Rigidbody2D>().linearVelocity = Vector3.right;
             ProjectileSpeed = 0f;
             isRaising = false;
         }
