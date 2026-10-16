@@ -14,8 +14,8 @@ public class CanonRotation : MonoBehaviour, InputSystem_Actions.ITurretActions
     public Vector3 _minRotation;
     private float _offset = -51.6f;
     public float ProjectileSpeed = 0;
-    public float MaxSpeed;
-    public float MinSpeed;
+    public float MaxSpeed = 10;
+    public float MinSpeed = 0;
     private float _initialScaleX;
     private Vector2 _distanceBetweenMouseAndPlayer;
     private bool isRaising = false;
@@ -32,13 +32,11 @@ public class CanonRotation : MonoBehaviour, InputSystem_Actions.ITurretActions
 
     void Update()
     {
-        Vector2 mousePos=mousePosition; //obtenir el valor del click del cursor (Fer amb new input system)
+        Vector2 mousePos = mousePosition; //obtenir el valor del click del cursor (Fer amb new input system)
 		_distanceBetweenMouseAndPlayer = Vector2.zero; //obtenir el vector distància entre el canó i el cursor
-        Vector3 mousePostition = mainCamera.ScreenToWorldPoint(mousePos);
-        Vector2 dist = mousePostition - transform.position;
-		//Vector2 dist = mousePos - _distanceBetweenMouseAndPlayer;
+        Vector2 dist = mousePos - _distanceBetweenMouseAndPlayer;
 		var ang = (Mathf.Atan2(dist.y, dist.x) * 180f / Mathf.PI + _offset);
-		transform.rotation = Quaternion.Euler(0, ang, 0); //en quin dels tres eixos va l'angle? eje y
+		transform.rotation = Quaternion.Euler(0, 0, ang); //en quin dels tres eixos va l'angle?
 		if (isRaising)
         {
             ProjectileSpeed = Time.deltaTime * _multiplier + Mathf.Clamp(ProjectileSpeed, MinSpeed, MaxSpeed); //ProjectileSpeed; //acotar entre dos valors (mirar variables)
